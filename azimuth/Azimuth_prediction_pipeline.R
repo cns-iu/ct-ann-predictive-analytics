@@ -61,7 +61,7 @@ print_logs(args)
 
 # Initialize all args
 print_logs('Initializing arguments')
-ANNDATA_FOLDER <- args[1][[1]] # "Datasets"
+ANNDATA_FOLDER <- args[1][[1]] # "datasets"
 QUERY_DATASET_NAME <- args[2][[1]] # "TS_Lung"
 OUTPUT_PREDICTIONS_FILE <- args[3][[1]] # "azimuth_preds.tsv"
 REFERENCE <- args[4][1] # "lungref"
@@ -78,23 +78,42 @@ options(timeout=360)
 
 lung_results <- RunAzimuth(query_adata, reference=REFERENCE)
 print_logs(paste0("Running Azimuth using the reference [", REFERENCE, "] dataset."))
-# Fails at: ??InstallData(reference)
+# Fails at: ??InstallData(reference) --> resolution is to use options(timeout=360)
 
 
-azimuth_preds <- data.frame(
-  predicted.ann_level_1 = lung_results$predicted.ann_level_1,
-  predicted.ann_level_1.score = lung_results$predicted.ann_level_1.score,
-  predicted.ann_level_2 = lung_results$predicted.ann_level_2,
-  predicted.ann_level_2.score = lung_results$predicted.ann_level_2.score,
-  predicted.ann_level_3 = lung_results$predicted.ann_level_3,
-  predicted.ann_level_3.score = lung_results$predicted.ann_level_3.score,
-  predicted.ann_level_4 = lung_results$predicted.ann_level_4,
-  predicted.ann_level_4.score = lung_results$predicted.ann_level_4.score,
-  predicted.ann_level_5 = lung_results$predicted.ann_level_5,
-  predicted.ann_level_5.score = lung_results$predicted.ann_level_5.score,
-  predicted.ann_finest_level = lung_results$predicted.ann_finest_level,
-  predicted.ann_finest_level.score = lung_results$predicted.ann_finest_level.score
-)
+
+
+create_new_df <- function(colnames, nrows){
+  tryCatch({
+    data.frame(matrix(ncol=length(colnames), nrow=nrows, dimnames=list(NULL,colnames)))
+  },
+  error=function(e){
+    cat('\nSomething went wrong while creating a new Dataframe for:',colnames)
+    print(e)
+  })
+}
+
+
+
+# Read the config file to pull the expected format of outputs-report
+config_file <- 'azimuth/config.csv'
+old_vs_new_colname_pairs <- read.csv(config_file, stringsAsFactors = FALSE)
+old_vs_new_colname_pairs <- subset(old_vs_new_colname_pairs, organ_reference==REFERENCE)
+
+# Initialize reportable dataframe of required column-names and num-rows = number of observations in Seurat object.
+colnames <- sapply(old_vs_new_colname_pairs,"[[",1)
+azimuth_preds <- create_new_df(colnames, ncol(lung_results))
+
+
+
+# Extract only specific few columns from the Seurat result object
+for (pair in old_vs_new_colname_pairs) {
+  old_name <- pair[1]
+  new_name <- pair[2]
+  azimuth_preds[new_name] <- as.vector(unlist(lung_results[[old_name]]))
+}
+
+
 
 tgt_filename <- paste0(ANNDATA_FOLDER, "/", QUERY_DATASET_NAME, "/", OUTPUT_PREDICTIONS_FILE)
 print_logs(paste0("Writing the azimuth predictions into ", tgt_filename))

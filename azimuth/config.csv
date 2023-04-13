@@ -1,0 +1,13 @@
+organ_reference,old_name,new_name
+lungref,predicted.ann_level_1,predicted.ann_level_1
+lungref,predicted.ann_level_1.score,predicted.ann_level_1.score
+lungref,predicted.ann_level_2,predicted.ann_level_2
+lungref,predicted.ann_level_2.score,predicted.ann_level_2.score
+lungref,predicted.ann_level_3,predicted.ann_level_3
+lungref,predicted.ann_level_3.score,predicted.ann_level_3.score
+lungref,predicted.ann_level_4,predicted.ann_level_4
+lungref,predicted.ann_level_4.score,predicted.ann_level_4.score
+lungref,predicted.ann_level_5,predicted.ann_level_5
+lungref,predicted.ann_level_5.score,predicted.ann_level_5.score
+lungref,predicted.ann_finest_level,predicted.ann_finest_level
+lungref,predicted.ann_finest_level.score,predicted.ann_finest_level.score
