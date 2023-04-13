@@ -1,0 +1,9 @@
+ALS - spinal cord and prefrontal cortex
+molecular changes in this region -> Visium spatial transcriptomic method
+Visium gets genome-wide RNA sequencing
+Modeling the gene-expressions across ALS patients and organs : find common gene-expression
+Autopsy on ALS patients - PostMortem
+Generated manual annotations for 100 cortical tissue samples of brain
+Aidan Daly (Cortex is for Human, Colon is from Mouse)
+Single mouse observed over time?
+cSplotch + Histological spatial image data = ?

@@ -1,0 +1,91 @@
+clusterName,markerGene,score
+B cell,CCL20,0.294295200724419
+B cell,CXCL5,0.294295200724419
+B cell,IL1B,0.294295200724419
+B cell,KYNU,0.294295200724419
+"CD4-positive, alpha-beta T cell",HLA-DQA2,0.14625063815730202
+"CD4-positive, alpha-beta T cell",TYROBP,0.14625063815730202
+"CD4-positive, alpha-beta T cell",HLA-DPB1,0.14625063815730202
+"CD8-positive, alpha-beta T cell",HLA-E,0.22439504783342715
+"CD8-positive, alpha-beta T cell",ITM2B,0.22439504783342715
+adventitial cell,TUBB,0.055658627087198514
+adventitial cell,SRGN,0.055658627087198514
+adventitial cell,RPS26,0.055658627087198514
+basal cell,CCL5,0.18143788306255473
+basal cell,NKG7,0.18143788306255473
+basal cell,RPS4Y1,0.18143788306255473
+basophil,APOE,0.2042755344418052
+basophil,SOD2,0.2042755344418052
+basophil,S100A9,0.2042755344418052
+blood vessel endothelial cell,CYBA,0.002901915264074289
+bronchial smooth muscle cell,LST1,0.22736338252891902
+bronchial smooth muscle cell,RPS26,0.22736338252891902
+capillary endothelial cell,SNHG5,0.3618773433315479
+capillary endothelial cell,RPS9,0.3618773433315479
+capillary endothelial cell,RPS18,0.3618773433315479
+classical monocyte,EDNRB,0.2409818145682202
+classical monocyte,CNN3,0.2409818145682202
+classical monocyte,HLA-E,0.2409818145682202
+club cell,SCGB3A1,0.36093749999999997
+club cell,RPS4Y1,0.36093749999999997
+dendritic cell,BTG1,0.14560099132589838
+dendritic cell,S100A4,0.14560099132589838
+dendritic cell,RPS4X,0.14560099132589838
+"effector CD4-positive, alpha-beta T cell",TFRC,0.625
+"effector CD4-positive, alpha-beta T cell",LIPA,0.625
+endothelial cell of artery,HLA-C,0.07145287512759442
+endothelial cell of artery,B2M,0.07145287512759442
+endothelial cell of lymphatic vessel,TMEM204,0.19161676646706582
+endothelial cell of lymphatic vessel,CNN3,0.19161676646706582
+endothelial cell of lymphatic vessel,PDLIM1,0.19161676646706582
+endothelial cell of lymphatic vessel,HLA-DRB1,0.19161676646706582
+fibroblast,ALOX5AP,0.14711575687185444
+fibroblast,RPS4Y1,0.14711575687185444
+fibroblast,RPL34,0.14711575687185444
+fibroblast,RPL41,0.14711575687185444
+lung ciliated cell,UCP2,0.2163943823445113
+lung ciliated cell,YWHAZ,0.2163943823445113
+lung microvascular endothelial cell,S100A3,0.18732970027247955
+lung microvascular endothelial cell,SERPINE1,0.18732970027247955
+lung microvascular endothelial cell,TINAGL1,0.18732970027247955
+lung microvascular endothelial cell,CX3CL1,0.18732970027247955
+macrophage,CRIP1,0.35528404558629567
+macrophage,FTH1,0.35528404558629567
+mature NK T cell,RPLP2,0.05895721484799578
+mesothelial cell,LILRA4,0.008476970895733257
+mesothelial cell,ALOX5AP,0.008476970895733257
+neutrophil,RGS2,0.27522935779816515
+neutrophil,AREG,0.27522935779816515
+neutrophil,S100A9,0.27522935779816515
+neutrophil,RPS26,0.27522935779816515
+non-classical monocyte,CRIP2,0.18201754385964913
+non-classical monocyte,TIMP3,0.18201754385964913
+non-classical monocyte,YWHAB,0.18201754385964913
+pericyte,EPAS1,0.1671959648795068
+plasma cell,LILRA4,0.07273877292852626
+plasma cell,AKR1C3,0.07273877292852626
+plasma cell,BCL2A1,0.07273877292852626
+plasma cell,CES1,0.07273877292852626
+plasmacytoid dendritic cell,PLP2,0.07741935483870968
+plasmacytoid dendritic cell,CD52,0.07741935483870968
+plasmacytoid dendritic cell,S100A4,0.07741935483870968
+plasmacytoid dendritic cell,PFN1,0.07741935483870968
+pulmonary ionocyte,DDIT4,0.05376344086021505
+pulmonary ionocyte,FCGR3A,0.05376344086021505
+pulmonary ionocyte,YBX1,0.05376344086021505
+respiratory goblet cell,SFTPB,0.29363012076722705
+respiratory goblet cell,CYP2B7P,0.29363012076722705
+respiratory goblet cell,SCGB3A2,0.29363012076722705
+serous cell of epithelium of bronchus,EIF5A,0.21739130434782608
+smooth muscle cell,DCAKD,0.15384615384615383
+type I pneumocyte,GCHFR,0.22765396597172297
+type I pneumocyte,FCGR3A,0.22765396597172297
+type I pneumocyte,CRIP1,0.22765396597172297
+type II pneumocyte,RPS4Y1,0.19019824896850154
+type II pneumocyte,RPL17,0.19019824896850154
+type II pneumocyte,TMSB10,0.19019824896850154
+vascular associated smooth muscle cell,IFITM3,0.1272264631043257
+vascular associated smooth muscle cell,RPS19,0.1272264631043257
+vein endothelial cell,XIST,0.25334886429819453
+vein endothelial cell,SFTPC,0.25334886429819453
+vein endothelial cell,HLA-DPB1,0.25334886429819453
