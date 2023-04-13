@@ -2,6 +2,8 @@
 
 A companion code-repository of the CT-Annotations paper, for comparing the predictive behaviors of algorithms created using Atlas-like reference datasets.
 
+TBD on how and when to open-source.
+
 
 ## Azimuth vs CellTypist vs PopV for Lung datasets
 
@@ -15,13 +17,12 @@ All condensed notes are in `“Vikrant-CxG-Notes-k.docx”`.
 ### 3 main driver notebooks:
 
 <ol>
-<li>`1_Overview_and_Fetch_predictions.ipynb`</li>
-<li>`2_Analyze_Labels_and_Feature_space.ipynb`</li>
-<li>`3_Analyze_scoring_metrics.ipynb`</li>
+<li>1_Overview_and_Fetch_predictions.ipynb</li>
+<li>2_Analyze_Labels_and_Feature_space.ipynb</li>
+<li>3_Analyze_scoring_metrics.ipynb</li>
 </ol>
 
-I usually export these to html for presentations in the `"/html_presentations/"` folder.
-I’m maintaining this as my own private Github Repo for now, but TBD on how and when to open-source.
+Export these notebooks to html for presentations in the `"/html_presentations/"` folder.
 
 ### Main folders with modularized code for fetching predictions and results:
 
@@ -45,12 +46,12 @@ A separate folder for fetching most discriminative features from NS-Forest algor
 
 <ol>
 
-<li>LCA.h5ad - [dropbox](https://www.dropbox.com/s/mrf8y7emfupo4he/LCA.h5ad) (more details on Cell-by-Gene portal [link](https://cellxgene.cziscience.com/collections/5d445965-6f1a-4b68-ba3a-b8f765155d3a)</li>
+<li>LCA.h5ad - <a href="https://www.dropbox.com/s/mrf8y7emfupo4he/LCA.h5ad">Dropbox</a> (more details on Cell-by-Gene portal <a  href="https://cellxgene.cziscience.com/collections/5d445965-6f1a-4b68-ba3a-b8f765155d3a">link</a>)</li>
 
-<li>TS_Lung.h5ad filtered and cleaned - [dropbox](https://www.dropbox.com/s/2kuzdamjevev2ci/Lung.h5ad?dl=1) (notebook is at [Colab](https://colab.research.google.com/drive/1Yw4ZDMoPgXNiC1ZQo2eS75Sw8Y_23rrb?usp=sharing#scrollTo=Zty7C8HAZwwr))</li>
+<li>TS_Lung.h5ad filtered and cleaned - <a href="https://www.dropbox.com/s/2kuzdamjevev2ci/Lung.h5ad?dl=1">Dropbox</a> (PopV Tutorial Notebook is on <a href="https://colab.research.google.com/drive/1Yw4ZDMoPgXNiC1ZQo2eS75Sw8Y_23rrb?usp=sharing#scrollTo=Zty7C8HAZwwr">Colab</a>)</li>
 
-<li>TS_Lung.h5ad- [FigShare](https://figshare.com/articles/dataset/Tabula_Sapiens_release_1_0/14267219)</li>
+<li>TS_Lung.h5ad- <a href="https://figshare.com/articles/dataset/Tabula_Sapiens_release_1_0/14267219">FigShare</a></li>
 
-<li>LungMap.h5ad - [Cell Annotation Platform](https://celltype.info/CAPinitialRelease/LungMAP-Human-data-from-a-broad-age-healthy-donor-group/3)</li>
+<li>LungMap.h5ad - <a href="https://celltype.info/CAPinitialRelease/LungMAP-Human-data-from-a-broad-age-healthy-donor-group/3">Cell Annotation Platform</a></li>
 
 <ol>
