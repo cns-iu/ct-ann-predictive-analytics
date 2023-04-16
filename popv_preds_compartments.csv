@@ -1,0 +1,33 @@
+popv_preds,compartment,count
+fibroblast of lung,stromal,2428
+lung pericyte,stromal,2125
+bronchial smooth muscle cell,stromal,1107
+vascular smooth muscle cell,stromal,571
+macrophage,immune,15245
+mature nk t cell,immune,5289
+classical monocyte,immune,5100
+neutrophil,immune,2107
+non-classical monocyte,immune,988
+b cell,immune,845
+migratory dendritic cell,immune,630
+plasma cell,immune,203
+type ii pneumocyte,epithelial,5125
+lung ciliated cell,epithelial,1977
+club cell,epithelial,1972
+type i pneumocyte,epithelial,1521
+basal cell,epithelial,1151
+pulmonary ionocyte,epithelial,81
+cap1 general capillary gcap,endothelial,15160
+endothelial cell of artery,endothelial,1566
+pulmonary venous endothelial cell,endothelial,1240
+lymphatic endothelial cell,endothelial,503
+cd8+ t cell naive,immune,5172
+cd4+ t cell naive,immune,3911
+bronchial goblet cell,epithelial,979
+suprabasal cell,epithelial,417
+plasmacytoid dendritic cell,immune,139
+mesothelial cell,stromal,30
+serous secreting cell of bronchus submucosal gland,epithelial,19
+arterial endothelial cell,endothelial,11
+smooth muscle cell,stromal,5
+cd4+ t cell effector memory,immune,4
