@@ -69,13 +69,6 @@ ABS_DATASET_PATH <- paste0(ANNDATA_FOLDER, "/", QUERY_DATASET_NAME, "/", QUERY_D
 
 
 
-ANNDATA_FOLDER <- "../datasets"
-QUERY_DATASET_NAME <- "LCA_Smart_seq2"
-# OUTPUT_PREDICTIONS_FILE <- "azimuth_preds.tsv"/
-REFERENCE <- "lungref"
-ABS_DATASET_PATH <- paste0(ANNDATA_FOLDER, "/", QUERY_DATASET_NAME, "/", QUERY_DATASET_NAME,".h5ad")
-
-
 print_logs(getwd())
 print_logs(paste0("Loading the query dataset : ", ABS_DATASET_PATH))
 print(paste0("****  Loading the query dataset : ", ABS_DATASET_PATH))
