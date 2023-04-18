@@ -1,35 +1,8 @@
-import base64, json, sys, re, os, pandas as pd, json, http.client
+import json, sys, json, http.client
+
 from pprint import pprint
-from requests import get
+from asctb_ct_label_mapper.utilities.asctb_data_wrangling import get_ccf_reporter_sheet_config
 
-
-
-def get_ccf_reporter_sheet_config(verbose=False):
-    """Accesses the Github repo for CCF-reporter, pulls the sheet-config at below URL.
-    `https://github.com/hubmapconsortium/ccf-asct-reporter/blob/main/projects/v2/src/assets/sheet-config.json`
-    
-    This sheet contains links for all ASCT+B organs --> dataset URL.
-
-    Args:
-        verbose (bool, optional): Flag to indicate logging in verbose mode. Defaults to False.
-    
-    Return:
-        list(dict): Python version of the `sheet_config.json` file.
-    """
-    USER = 'hubmapconsortium'
-    REPOSITORY_NAME = 'ccf-asct-reporter'
-    FILE_PATH = '/projects/v2/src/assets/sheet-config.json'
-    sheet_config = None
-    response = get(url=f'https://api.github.com/repos/{USER}/{REPOSITORY_NAME}/contents/{FILE_PATH}')
-    if response.status_code == 200:
-        json_response = response.json()
-        decoded_content = base64.b64decode(json_response['content']) # Github returns response in b64 encoding
-        json_string = decoded_content.decode('utf-8')
-        sheet_config = json.loads(json_string)
-    else:
-        print(f'Error {response.status_code}! Something went wrong while trying to read the CCF-Reporter Github repo sheet-config file...')
-    if verbose:  print(f'sheet_config = \n{sheet_config}')
-    return sheet_config
 
 
 
@@ -87,6 +60,8 @@ def get_asctb_data(asctb_organ='Lung', asctb_organ_version='v1.2', verbose=False
     return response
 
 
+
+
 def parse_asctb_ct_vs_bg(response, verbose=False):
     """Parse each row of the ASCTB organ version json data and return a dictionary for:
         
@@ -111,6 +86,8 @@ def parse_asctb_ct_vs_bg(response, verbose=False):
         hmap[ct] = list(set(bgs))
     if verbose:  pprint(hmap)
     return hmap
+
+
 
 
 def merge_asctb_crosswalk_into_derived_markers(translation_hmap, markers_dict, annotation_colnames=['azimuth_preds'], verbose=False):

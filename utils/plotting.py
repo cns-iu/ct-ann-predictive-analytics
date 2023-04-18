@@ -116,12 +116,6 @@ def plot_obs_treemap(adata, max_unique=50, dataset_name='Dummy', verbose=False):
 
 
 
-
-
-
-
-
-
 def create_raincloudplot_top_k_bottom_k_genes(
         adata, most_expressed_genes, 
         celltype_labels_column='azimuth_preds', aggregation_method='mean', filter_sparse_cell_types=False, 

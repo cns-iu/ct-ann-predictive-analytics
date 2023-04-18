@@ -1,4 +1,4 @@
-import os, scanpy as sc, pandas as pd, numpy as np
+import  pandas as pd
 from subprocess import Popen, PIPE
 from asctb_ct_label_mapper.utilities.nlp_preprocessing import execute_nlp_pipeline
 
@@ -63,6 +63,23 @@ def get_unq_vals_as_str(x, verbose=False):
 
 
 def clean_and_translate_annotation(input_label):
+    """Returns the cleaned version of the annotation label after performing the following steps:
+    
+    ```python
+    remove_whitespaces()
+    expand_word_contractions()
+    replace_special_chars()
+    convert_number_to_word()
+    make_lowercase()
+    get_root_word()
+    ```
+
+    Args:
+        input_label (str): Input annotation label text.
+
+    Returns:
+        str: Cleaned version of the annotation label text.
+    """
     return ' '.join([execute_nlp_pipeline(word) for word in input_label.split()])
 
 

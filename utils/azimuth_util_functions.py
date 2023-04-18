@@ -1,5 +1,4 @@
-from requests import get
-import base64, json, pandas as pd
+import pandas as pd
 
 def get_specific_azimuth_marker_genes(filename='hlca_level1.csv', verbose=False):
     """Accesses the Github repo for Azimuth, and pulls the lung-information from specific URLs.

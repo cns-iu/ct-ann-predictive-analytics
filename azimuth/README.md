@@ -1,5 +1,6 @@
-# Azimuth vs CellTypist vs PopV
+# Azimuth
 
-Code:
-1. azimuth_prediction_pipeline.R - Transfers labels onto test RDS-dataset based on reference dataset anchors. Output can be configured to be CSV/RDS file.
-2. Azimuth_convert_Rds_to_h5ad.R - Script takes in command-line parameters to convert RDS into h5ad. Need this for future downstream analytics.
+
+Use the modular parameterized `azimuth_prediction_pipeline.R` script to generate Azimuth predictions. Transfers labels onto query RDS-dataset based on reference dataset anchors. Output can be configured to be CSV/RDS file.
+
+Might need `Azimuth_convert_Rds_to_h5ad.R` for future downstream analytics.
