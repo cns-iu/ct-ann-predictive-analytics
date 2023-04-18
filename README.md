@@ -4,24 +4,31 @@ A companion code-repository of the CT-Annotations paper, for comparing the predi
 
 TBD on how and when to open-source.
 
+----------------------------------------------
 
 ## Azimuth vs CellTypist vs PopV for Lung datasets
 
+
+----------------------------------------------
 
 
 ### Summary of all papers:
 
 All condensed notes are in `“/papers/Vikrant-CxG-Notes-k.docx”`.
 
+----------------------------------------------
 
 ### 3 main driver notebooks:
 
-a. `1_Overview_and_Fetch_predictions.ipynb` - If modularized efficiently, can use this to fetch predictions from containerized microservices.
-b. `2_Analyze_Labels_and_Feature_space.ipynb` - Explores the gene-expressions in the query dataset, and overlays the most expressive genes with canonically identified markers (ASCT+B or Azimuth), and algorithmically identified markers (NS-Forest). Uses an expertly curated "Crosswalk" for data harmonization.
-c. `3_Analyze_scoring_metrics.ipynb` - Explores the distributions of scores (includes facets of metadata like assay-type), and naming conventions amongst 3 modalities of annotating single-cell data. Uses an expertly curated "Crosswalk" for data harmonization.
-d. `5_Sankey_Plot_and_PopV_compartments.ipynb` - Currently a WIP. The Sankey plot is tricky to implement. Still trying out multiple approaches.
+1. `1_Overview_and_Fetch_predictions.ipynb` - If modularized efficiently, can use this to fetch predictions from containerized microservices.
+2. `2_Analyze_Labels_and_Feature_space.ipynb` - Explores the gene-expressions in the query dataset, and overlays the most expressive genes with canonically identified markers (ASCT+B or Azimuth), and algorithmically identified markers (NS-Forest). Uses an expertly curated "Crosswalk" for data harmonization.
+3. `3_Analyze_scoring_metrics.ipynb` - Explores the distributions of scores (includes facets of metadata like assay-type), and naming conventions amongst 3 modalities of annotating single-cell data. Uses an expertly curated "Crosswalk" for data harmonization.
+4. `5_Sankey_Plot_and_PopV_compartments.ipynb` - Currently a WIP. The Sankey plot is tricky to implement. Still trying out multiple approaches.
 
 Exports of these notebooks to html (for presentability) are in the `"/html_presentations/"` folder.
+
+
+----------------------------------------------
 
 ### Main folders with modularized code for fetching predictions and results:
 
@@ -43,6 +50,9 @@ The `/utilities/` folder contains reusable code modularized into functions:
 
 
 
+
+----------------------------------------------
+
 ### Input and Outputs of AnnData objects will be in “Datasets” folder:
 
 1. Naming convention of input file should be: `"Datasets/{data_name}/{data_name}.h5ad"`.
@@ -51,9 +61,10 @@ The `/utilities/` folder contains reusable code modularized into functions:
 4. The locally stored outputs of #2 and #3 can be used as cache, while using the above notebooks.
 
 
+
+----------------------------------------------
+
 #### Query datsets explored so far:
-
-
 
 <ol>
 <li>LCA.h5ad - <a href="https://www.dropbox.com/s/mrf8y7emfupo4he/LCA.h5ad">Dropbox</a> (more details on Cell-by-Gene portal <a  href="https://cellxgene.cziscience.com/collections/5d445965-6f1a-4b68-ba3a-b8f765155d3a">link</a>)</li>
@@ -68,3 +79,5 @@ The `/utilities/` folder contains reusable code modularized into functions:
 
 <li>Tucker_Heart_4_chambers.h5ad - <a href="https://nam12.safelinks.protection.outlook.com/?url=https%3A%2F%2Fpubmed.ncbi.nlm.nih.gov%2F32403949%2F&data=05%7C01%7Cvikdeshp%40iu.edu%7C5d9f524ad2ba4ef59ba208db2c04014f%7C1113be34aed14d00ab4bcdd02510be91%7C0%7C0%7C638152167935828448%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=OntW49vWEWw3iEpURAjEG5P63zE2zErgoqBz7mEuKgQ%3D&reserved=0">Paper</a> and <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7666104/#S6title">Dataset.</a></li>
 </ol>
+
+----------------------------------------------
