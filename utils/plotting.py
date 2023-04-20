@@ -333,6 +333,7 @@ def create_heatmap_top_k_bottom_k_genes(
 
 
 
+
 def add_custom_subplot_of_summaries(predictions1, predictions2, fig, i, j, verbose=False):
     """Adds a pie-chart subplot to the existing plotly-express figure.
 
@@ -354,7 +355,8 @@ def add_custom_subplot_of_summaries(predictions1, predictions2, fig, i, j, verbo
             labels=comparisons['match'], 
             values=comparisons['count'],
             marker=dict(colors=['orangered','green']),
-            opacity=.7
+            opacity=.7,
+            textfont={'size':15}
         ),
         i, j
     )
