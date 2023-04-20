@@ -134,7 +134,7 @@ sc.pp.log1p(query_adata)
 logger.warning(f'The CxG df should be log1p normalized to 10,000 counts per cell:\n {np.expm1(query_adata.X).sum(axis = 1)}')
 
 
-# Make the var names unique now. Hopefully it works
+# Make the var names unique now.
 query_adata.var_names_make_unique()
 
 
@@ -154,7 +154,7 @@ if EXISTING_ANNOTATIONS_COLUMN:
 
 ABS_TGT_CSV_PATH = f'{ANNDATA_FOLDER}/{DATASET_NAME}/{OUTPUT_PREDICTIONS_FILE}'
 logger.info(f'Writing the predictions anndata to {ABS_TGT_CSV_PATH}')
-predictions_adata.obs.to_csv(ABS_TGT_CSV_PATH, index=False)
+predictions_adata.obs.to_csv(ABS_TGT_CSV_PATH, index=True)
 
 
 end = time.time()
