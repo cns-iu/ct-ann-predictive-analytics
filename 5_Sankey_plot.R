@@ -1,0 +1,107 @@
+#Load the required libraries
+library(tidyverse)
+library(scales) #for scatter graph
+library(ggrepel) # to jitter labels
+library(networkD3) #for Sankey
+library(RColorBrewer) # for plots
+library(rio)
+
+# setwd("C:/Users/HP/Desktop/Vikrant/Github_Repositories/ct-ann-predictive-analytics")
+all_preds_df <- rio::import("datasets/LCA/all_preds_and_scores.csv")
+
+
+# Fig. 1 Sankey diagram
+
+# reformat data we we get azimuth | celltypist | popv
+# need two tibbles: 
+# NODES with NodeId
+# LINKS with Source, Target, Value
+
+all_preds_df <- all_preds_df %>% 
+  select(azimuth_preds, celltypist_preds, popv_preds) %>%
+  mutate(celltypist_preds = paste0(celltypist_preds, ' '))
+
+azimuth <- all_preds_df %>% 
+  group_by(azimuth_preds) %>% summarize()
+
+celltypist <- all_preds_df %>% 
+  group_by(celltypist_preds) %>% summarize()
+
+popv <-  all_preds_df %>% 
+  group_by(popv_preds) %>% summarize()
+
+unique_name <- list()
+unique_name <- unlist(append(unique_name, c(celltypist, azimuth, popv)))
+unique_name <- list(unique_name)
+
+nodes <- as.data.frame(tibble(name = character()))
+
+for(u in unique_name){
+  nodes = nodes %>% 
+    add_row(name=u)
+}
+
+nodes$index <- 0:(nrow(nodes)-1)
+nodes
+
+
+azimuth_to_popv <- all_preds_df %>% 
+  group_by(azimuth_preds, popv_preds) %>% 
+  summarize(count=n()) %>% 
+  rename(
+    source = azimuth_preds,
+    target = popv_preds,
+    value = count
+  )
+
+
+celltypist_to_azimuth <- all_preds_df %>% 
+  group_by(celltypist_preds, azimuth_preds) %>% 
+  summarize(count=n()) %>% 
+  rename(
+    source = celltypist_preds,
+    target = azimuth_preds,
+    value = count
+  )
+
+
+prep_links <- as.data.frame(bind_rows(celltypist_to_azimuth, azimuth_to_popv))
+prep_links 
+
+
+
+# rename node and link tables
+
+names(nodes)[1]<- "source"
+prep_links <- left_join(prep_links, nodes,by="source")
+
+names(nodes)[1] <- "target"
+prep_links <- left_join(prep_links, nodes,by="target")
+prep_links
+
+prep_links <- prep_links[,c(4,5,3)]
+names(prep_links)[1:2] <- c("source", "target")
+names(nodes)[1] <- "name"
+
+# draw Sankey diagram
+sankey_plot <- sankeyNetwork(
+  Links = prep_links, 
+  Nodes = nodes, 
+  Source = "source",
+  Target = "target", 
+  Value = "value", 
+  NodeID = "name",
+  units = "occurrences", 
+  fontSize = 15, 
+  nodeWidth = 30
+)
+
+
+# Adding a title to the html page causes the viz to go out of view. No workaround found yet.
+# library(htmlwidgets)
+# library(htmltools)
+# 
+# sankey_plot <- htmlwidgets::appendContent(sankey_plot, htmltools::tags$p("Sankey plot:\n\nCelltypist predicted annotations - Azimuth predicted annotations - PopV predicted annotations"))
+
+
+sankey_plot
