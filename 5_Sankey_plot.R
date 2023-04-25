@@ -1,4 +1,3 @@
-#Load the required libraries
 library(tidyverse)
 library(scales) #for scatter graph
 library(ggrepel) # to jitter labels
@@ -7,8 +6,8 @@ library(RColorBrewer) # for plots
 library(rio)
 
 # setwd("C:/Users/HP/Desktop/Vikrant/Github_Repositories/ct-ann-predictive-analytics")
-# all_preds_df <- rio::import("datasets/LCA/all_preds_and_scores.csv")
-all_preds_df <- rio::import("datasets/LCA/all_preds_and_scores_crosswalked.csv")
+all_preds_df <- rio::import("datasets/LCA/all_preds_and_scores.csv")
+# all_preds_df <- rio::import("datasets/LCA/all_preds_and_scores_crosswalked.csv")
 
 
 # Reformat data we we get azimuth | celltypist | popv
@@ -19,8 +18,8 @@ all_preds_df <- rio::import("datasets/LCA/all_preds_and_scores_crosswalked.csv")
 all_preds_df <- all_preds_df %>% 
   select(azimuth_preds, celltypist_preds, popv_preds) %>%
   mutate(
-    celltypist_preds = paste0(' ', celltypist_preds),
-    popv_preds = paste0(popv_preds, ' '),
+    celltypist_preds = paste0(celltypist_preds),
+    azimuth_preds = paste0(azimuth_preds, ' '),
   )
 
 azimuth <- all_preds_df %>% 
@@ -32,8 +31,42 @@ celltypist <- all_preds_df %>%
 popv <-  all_preds_df %>% 
   group_by(popv_preds) %>% summarize()
 
+
+azimuth_to_popv <- all_preds_df %>% 
+  group_by(azimuth_preds, popv_preds) %>% 
+  summarize(count=n()) %>% 
+  rename(
+    source = azimuth_preds,
+    target = popv_preds,
+    value = count
+  )
+
+
+azimuth_to_celltypist <- all_preds_df %>% 
+  group_by(celltypist_preds, azimuth_preds) %>% 
+  summarize(count=n()) %>% 
+  rename(
+    source = azimuth_preds,
+    target = celltypist_preds,
+    value = count
+  )
+
+
+
+celltypist_to_popv <- all_preds_df %>% 
+  group_by(celltypist_preds, popv_preds) %>% 
+  summarize(count=n()) %>% 
+  rename(
+    source = celltypist_preds,
+    target = popv_preds,
+    value = count
+  )
+
+
+
 unique_name <- list()
-unique_name <- unlist(append(unique_name, c(celltypist, azimuth, popv)))
+# unique_name <- unlist(append(unique_name, c(celltypist, azimuth, popv)))
+unique_name <- unlist(append(unique_name, c(azimuth, celltypist)))
 unique_name <- list(unique_name)
 
 nodes <- as.data.frame(tibble(name = character()))
@@ -47,27 +80,10 @@ nodes$index <- 0:(nrow(nodes)-1)
 nodes
 
 
-azimuth_to_popv <- all_preds_df %>% 
-  group_by(azimuth_preds, popv_preds) %>% 
-  summarize(count=n()) %>% 
-  rename(
-    source = azimuth_preds,
-    target = popv_preds,
-    value = count
-  )
 
 
-celltypist_to_azimuth <- all_preds_df %>% 
-  group_by(celltypist_preds, azimuth_preds) %>% 
-  summarize(count=n()) %>% 
-  rename(
-    source = celltypist_preds,
-    target = azimuth_preds,
-    value = count
-  )
-
-
-prep_links <- as.data.frame(bind_rows(celltypist_to_azimuth, azimuth_to_popv))
+# prep_links <- as.data.frame(bind_rows(azimuth_to_celltypist, azimuth_to_popv))
+prep_links <- as.data.frame(bind_rows(azimuth_to_celltypist))
 prep_links 
 
 
@@ -102,7 +118,7 @@ sankey_plot <- sankeyNetwork(
 
 
 # Adding a title to the html page causes the viz to go out of view. No workaround found yet.
-# library(htmlwidgets)
+library(htmlwidgets)
 # library(htmltools)
 # sankey_plot <- htmlwidgets::appendContent(sankey_plot, htmltools::tags$p("Sankey plot:\n\nCelltypist predicted annotations - Azimuth predicted annotations - PopV predicted annotations"))
 
@@ -130,7 +146,7 @@ sn <- onRender(
   // select all our node text
   d3.select(el)
   .selectAll(".node text")
-  .filter(function(d) { return d.name.startsWith(" "); })
+  .filter(function(d) { return d.name.endsWith(" "); })
   .attr("x", x.options.nodeWidth - 34)
   .attr("text-anchor", "end");
   }
