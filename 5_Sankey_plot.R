@@ -7,19 +7,21 @@ library(RColorBrewer) # for plots
 library(rio)
 
 # setwd("C:/Users/HP/Desktop/Vikrant/Github_Repositories/ct-ann-predictive-analytics")
-all_preds_df <- rio::import("datasets/LCA/all_preds_and_scores.csv")
+# all_preds_df <- rio::import("datasets/LCA/all_preds_and_scores.csv")
+all_preds_df <- rio::import("datasets/LCA/all_preds_and_scores_crosswalked.csv")
 
 
-# Fig. 1 Sankey diagram
-
-# reformat data we we get azimuth | celltypist | popv
-# need two tibbles: 
-# NODES with NodeId
-# LINKS with Source, Target, Value
+# Reformat data we we get azimuth | celltypist | popv
+# We need two tibbles: 
+# [NODES] with [NodeId]
+# [LINKS] with [Source, Target, Value]
 
 all_preds_df <- all_preds_df %>% 
   select(azimuth_preds, celltypist_preds, popv_preds) %>%
-  mutate(celltypist_preds = paste0(celltypist_preds, ' '))
+  mutate(
+    celltypist_preds = paste0(' ', celltypist_preds),
+    popv_preds = paste0(popv_preds, ' '),
+  )
 
 azimuth <- all_preds_df %>% 
   group_by(azimuth_preds) %>% summarize()
@@ -93,15 +95,47 @@ sankey_plot <- sankeyNetwork(
   NodeID = "name",
   units = "occurrences", 
   fontSize = 15, 
-  nodeWidth = 30
+  nodeWidth = 30,
+  margin = list("left"=200, "right"=200)
+  # NodeGroup = c(rep(1,nrow(celltypist)), rep(2,nrow(azimuth)), rep(3,nrow(popv)))
 )
 
 
 # Adding a title to the html page causes the viz to go out of view. No workaround found yet.
 # library(htmlwidgets)
 # library(htmltools)
-# 
 # sankey_plot <- htmlwidgets::appendContent(sankey_plot, htmltools::tags$p("Sankey plot:\n\nCelltypist predicted annotations - Azimuth predicted annotations - PopV predicted annotations"))
 
 
-sankey_plot
+
+sn <- onRender(
+  sankey_plot,
+  '
+  function(el,x){
+    // select all our node text
+    var node_text = d3.select(el)
+      .selectAll(".node text")
+      .attr("x", 6 + x.options.nodeWidth)
+      .attr("text-anchor", "start");
+  }
+  '
+)
+
+
+
+sn <- onRender(
+  sn,
+  '
+  function(el,x){
+  // select all our node text
+  d3.select(el)
+  .selectAll(".node text")
+  .filter(function(d) { return d.name.startsWith(" "); })
+  .attr("x", x.options.nodeWidth - 34)
+  .attr("text-anchor", "end");
+  }
+  '
+)
+
+
+sn
