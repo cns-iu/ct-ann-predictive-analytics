@@ -1,39 +1,7 @@
 import json, sys, json, http.client
 
 from pprint import pprint
-from asctb_ct_label_mapper.utilities.asctb_data_wrangling import get_ccf_reporter_sheet_config
-
-
-
-
-def get_asctb_data_url(asctb_organ='Lung', asctb_organ_version='v1.1', verbose=False):
-    """Reads the sheet-config from the CCF-reporter Github repo, and parses it to fetch the dataset-link for the specific organ and version.
-    
-    Args:
-        asctb_organ (str, optional): Defaults to 'Lung'.
-        asctb_organ_version (str, optional): Defaults to 'v1.1'.
-        verbose (bool, optional): Flag to indicate logging in verbose mode. Defaults to False.
-    
-    Returns:
-        str: `URL` for the specific ASCT+B organ and version.
-        str: `sheetId` for the specific ASCT+B organ and version.
-        str: `gid` for the required ASCT+B organ and version.
-    """
-    GOOGLE_SHEETS_BASE_URL = 'https://docs.google.com/spreadsheets/d/'
-    SHEET_CONFIG = get_ccf_reporter_sheet_config(verbose=verbose)
-    if not SHEET_CONFIG:
-        sys.exit('Couldnt access the CCF-Reporter Github!')
-
-    for asctb_dataset in SHEET_CONFIG:
-        if asctb_dataset['name'].lower() == asctb_organ.lower():
-            if verbose:  pprint(asctb_dataset)
-            for version_metadata in asctb_dataset['version']:
-                if version_metadata['viewValue'] == asctb_organ_version:
-                    version_name = version_metadata['value']
-                    google_sheets_url = GOOGLE_SHEETS_BASE_URL + version_metadata['sheetId']
-                    if verbose:  print(version_name, google_sheets_url)
-                    return google_sheets_url, version_metadata['sheetId'], version_metadata['gid']
-    return None
+from asctb_ct_label_mapper.utilities.asctb_data_wrangling import get_ccf_reporter_sheet_config, get_asctb_data_url
 
 
 
